@@ -23,7 +23,7 @@ function View() {
   try {
     await axios.delete(
       //  `http://localhost:3000/delete/${id}`
-      `http://post-6yc4.onrender.com/delete/${id}`
+      `https://post-6yc4.onrender.com/delete/${id}`
     );
 
     setPosts(posts.filter(post => post._id !== id));
