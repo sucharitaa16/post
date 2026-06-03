@@ -2,6 +2,7 @@ import React, { useEffect,useState } from 'react'
 import { use } from 'react'
 import axios from 'axios'
 import Navbar from './Navbar'
+import DeleteButton from './DeleteButton'
 
 function View() {
   const [posts, setPosts]=useState([])
@@ -17,6 +18,20 @@ function View() {
 })
   },[])
 
+
+  const handleDelete = async (id) => {
+  try {
+    await axios.delete(
+      `https://post-6yc4.onrender.com/delete/${id}`
+    );
+
+    setPosts(posts.filter(post => post._id !== id));
+
+  } catch (err) {
+    console.log(err);
+  }
+};
+
   
 
   return (
@@ -28,6 +43,9 @@ function View() {
         posts.length >0 ? (
           posts.map((post)=>(
             <div key={post._id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
+              <div className="flex justify-end p-2">
+  <DeleteButton onDelete={() => handleDelete(post._id)} />
+</div>
             <img
   src={post.image}
   alt="img"
