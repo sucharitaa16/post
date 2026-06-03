@@ -21,15 +21,14 @@ function View() {
 
   const handleDelete = async (id) => {
   try {
-    await axios.delete(
-      //  `http://localhost:3000/delete/${id}`
-      `https://post-6yc4.onrender.com/delete/${id}`
-    );
-
+    await axios.delete(`https://post-6yc4.onrender.com/delete/${id}`);
     setPosts(posts.filter(post => post._id !== id));
-
   } catch (err) {
-    console.log(err);
+    console.error("Delete error:", err.message);
+    if (err.response) {
+      console.error("Response status:", err.response.status);
+      console.error("Response data:", err.response.data);
+    }
   }
 };
 
