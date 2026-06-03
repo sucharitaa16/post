@@ -19,19 +19,43 @@ function View() {
   },[])
 
 
-  const handleDelete = async (id) => {
+//   const handleDelete = async (id) => {
+//   try {
+//     await axios.delete(`https://post-6yc4.onrender.com/delete/${id}`);
+//     setPosts(posts.filter(post => post._id !== id));
+//   } catch (err) {
+//     console.error("Delete error:", err.message);
+//     if (err.response) {
+//       console.error("Response status:", err.response.status);
+//       console.error("Response data:", err.response.data);
+//     }
+//   }
+// };
+
+
+const handleDelete = async (id) => {
+
+  const confirmed = window.confirm(
+    "Are you sure you want to delete this post?"
+  );
+
+  if (!confirmed) return;
+
   try {
-    await axios.delete(`https://post-6yc4.onrender.com/delete/${id}`);
-    setPosts(posts.filter(post => post._id !== id));
+    await axios.delete(
+      `https://post-6yc4.onrender.com/delete/${id}`
+    );
+
+    setPosts(prevPosts =>
+      prevPosts.filter(post => post._id !== id)
+    );
+
+    alert("Post deleted successfully ✅");
+
   } catch (err) {
-    console.error("Delete error:", err.message);
-    if (err.response) {
-      console.error("Response status:", err.response.status);
-      console.error("Response data:", err.response.data);
-    }
+    alert("Failed to delete post ❌");
   }
 };
-
   
 
   return (
