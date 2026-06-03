@@ -7,7 +7,7 @@ function View() {
   const [posts, setPosts]=useState([])
 
   useEffect(()=>{
-    axios.get("http://localhost:3000/posts")
+    axios.get("https://post-6yc4.onrender.com/posts")
 .then((res)=>{
   setPosts(res.data.posts)
   console.log(res.data)

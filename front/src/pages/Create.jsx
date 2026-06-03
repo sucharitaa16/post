@@ -2,13 +2,7 @@ import React, { useEffect } from 'react'
 import axios from 'axios'
 import Navbar from './Navbar'
 
-// useEffect(()=>{
-//   axios.post("http://localhost:3000")
-//   .then((res)=>{
-//     crea
-//   })
 
-// },[])
 
 
 
@@ -19,7 +13,7 @@ const handleSubmit= async(e)=>{
 e.preventDefault()
 
 const formData=new FormData(e.target)
-axios.post("http://localhost:3000/create-post",formData)
+axios.post("https://post-6yc4.onrender.com/create-post",formData)
 .then((res)=>{
   alert("post created successfully")
   e.target.reset()
